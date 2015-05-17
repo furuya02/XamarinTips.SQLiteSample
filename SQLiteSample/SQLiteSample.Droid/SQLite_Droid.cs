@@ -9,11 +9,9 @@ using Xamarin.Forms;
 namespace SQLiteSample.Droid {
     public class SQLite_Android : ISQLite {
         public SQLiteConnection GetConnection() {
-            const string sqliteFilename = "TodoSQLite.db3"; //データベース名
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);//Documentsフォルダ
-            var path = Path.Combine(documentsPath, sqliteFilename);//DBファイルのパス
-            var plat = new SQLitePlatformAndroid();
-            return new SQLiteConnection(plat, path);
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // <- ①
+            var path = Path.Combine(documentsPath, "TodoSQLite.db3"); // <- ②
+            return new SQLiteConnection(new SQLitePlatformAndroid(), path); // <- ③
         }
     }
 }
